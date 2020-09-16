@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-16">
+        <title>Kalculadora</title>
+    </head>
+    <style>
+        /*############################Estilo Divs############################*/
+        body{
+            background-color:rgb(49, 49, 56) ;        
+        }
+        #cabecalho{
+            font-family: 'Courier New', Courier, monospace;
+            color:rgb(77, 77, 88);
+            align-items: center;
+        }
+        .kalculadora{
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            left: 100px;
+            right:100px;
+            top: 100px;
+            background-color:rgb(239, 239, 247);
+            position:absolute;
+            border-radius: 30px;        
+            font-size:30px;
+        }
+        .botoes{
+            padding: 10px;
+        }
+        #visor{
+            font-size:30px;
+        }
+        /*############################Estilo botoes############################*/
+        #somar{
+            background-color:#0088ff;
+            border: none;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            font-size:30px;
+            color:whitesmoke;
+            text-align: center;
+            cursor:pointer;        
+        }
+        #subtrair{
+            background-color:#0088ff;
+            border: none;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            font-size:30px;
+            color:whitesmoke;
+            text-align: center;
+            cursor:pointer;
+        }
+        #dividir{
+            background-color:#0088ff;
+            border: none;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            font-size:30px;
+            color:whitesmoke;
+            text-align: center;
+            cursor:pointer;
+        }
+        #multiplicar{
+            background-color:#0088ff;
+            border: none;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            font-size:30px;
+            color:whitesmoke;
+            text-align: center;
+            cursor:pointer;
+        }
+        #limpar{        
+            background-color:#313a42;
+            border: none;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            font-size:30px;
+            color:whitesmoke;
+            text-align: center;
+            cursor:pointer;
+        }
+        /* ############################ Estilo hover ############################*/
+        #somar:hover{
+            background-color:#ff8400;
+        }
+        #subtrair:hover{
+            background-color:#ff8400;
+        }
+        #dividir:hover{
+            background-color:#ff8400;
+        }
+        #multiplicar:hover{
+            background-color:#ff8400;
+        }
+        #limpar:hover{
+            background-color:#000000;
+        }
+        /*############################Estilo inputs############################*/
+        #valor1{
+            border:none;
+            border-radius:10px;
+            font-size:30px;
+        }
+        #valor2{
+            border:none;
+            border-radius:10px;
+            font-size:30px;
+        }
+        #rodape{
+            color: rgb(117, 117, 117);        
+        }
+    </style>
+    <script>
+        //############################Função para calcular independente da operação############################
+        function calcular(id){
+            let valor1 = parseFloat(document.getElementById("valor1").value)
+            let valor2 = parseFloat(document.getElementById("valor2").value)
+            let resultado =0.0
+            //############################verificação dos campos
+            if (isNaN(valor1) || isNaN(valor2) && id != "limpar"){
+                resultado = "Preencha todos os campos!"     
+                document.getElementById("visor").innerHTML=resultado
+                document.getElementById("visor").style.color="#ff0021";       
+            }        
+            else{
+                //############################verifica qual botão foi clicado para fazer o calculo############################
+                switch (id) {
+                    case "somar":
+                        resultado = valor1 + valor2
+                        break
+                    case "subtrair":
+                        resultado = valor1 - valor2
+                        break
+                    case "dividir":
+                        resultado = valor1 / valor2
+                        break
+                    case "multiplicar":
+                        resultado = valor1 * valor2
+                        break
+                    case "limpar":
+                        resultado = 0
+                        document.getElementById("valor1").value="";
+                        document.getElementById("valor2").value="";
+                        break           
+                }
+                //############################Insere o resultado na  div  ############################       
+                document.getElementById("visor").innerHTML=resultado
+                document.getElementById("visor").style.color="#000000"; 
+            }
+            
+        } 
+    </script>
+    <body>
+        <div class="kalculadora">
+            <h1 id="cabecalho">Kalculadora</h1>        
+            <br>        
+            <input id ="valor1"type="number">
+            <input id ="valor2" type="number">
+            <p></p>
+            <!--############################Resultado da operação aparece aqui!############################-->
+            <div id="visor"><h3>0</h3></div>
+            <!--############################Botões para calculo############################-->        
+            <div class ="botoes">
+                <button id ="somar" onclick="calcular(this.id)">+</button> |
+                <button id="subtrair" onclick="calcular(this.id)">-</button> |
+                <button id="dividir" onclick="calcular(this.id)">/</button> |
+                <button id="multiplicar" onclick="calcular(this.id)">*</button> |
+                <button id="limpar" onclick="calcular(this.id)">C</button>
+            </div>
+            <br>
+            <div id="rodape">
+                Feito com ♥ por Kyron Rocha!
+            </div>     
+        </div> 
+    </body>  
+</html>
